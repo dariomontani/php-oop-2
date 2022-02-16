@@ -1,17 +1,25 @@
 <?php
 
+require_once __DIR__ . "/Company.php";
+
 class Product
 {
     protected $name;
     protected $price;
     protected $category;
     protected $quantity;
+    protected $company;
 
-    public function __construct($name, $price, $quantity)
+    public function __construct($name, $price, $quantity, $company)
     {
-        $this->name = $name;
-        $this->price = $price;
-        $this->quantity = $quantity;
+        try {
+            $this->name = $name;
+            $this->price = $price;
+            $this->setQuantity($quantity);
+            $this->setCompany($company);
+        } catch (TypeError $error) {
+            throw new Exception($error->getMessage());
+        }
     }
 
     /**
@@ -89,7 +97,31 @@ class Product
      */
     public function setQuantity($quantity)
     {
+        if ($quantity < 1) {
+            throw new Exception("Prodotto non disponibile");
+        }
+
         $this->quantity = $quantity;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of company
+     */
+    public function getCompany()
+    {
+        return $this->company;
+    }
+
+    /**
+     * Set the value of company
+     *
+     * @return  self
+     */
+    public function setCompany(Company $company)
+    {
+        $this->company = $company;
 
         return $this;
     }

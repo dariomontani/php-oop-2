@@ -10,13 +10,19 @@ $user->insertCreditCard($c); -->
 <?php
 
 require_once __DIR__ . "/classes/User.php";
+require_once __DIR__ . "/classes/Product.php";
 
 
 try {
 
-    $newUser = new User("da", "montani", "premium");
+    $newUser = new User("dario", "montani", "premium");
 
     echo $newUser->getName();
+
+    $newProduct = new Product("tastiera", 100, 5, 'logitech');
+
+    echo $newProduct->getQuantity();
 } catch (Exception $error) {
+
     echo $error->getMessage();
 }
