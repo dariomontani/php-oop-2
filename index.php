@@ -6,3 +6,17 @@ Strutturare le classi gestendo l’ereditarietà dove necessario; ad esempio ci 
 Provate a far interagire tra di loro gli oggetti: ad esempio, l’utente dello shop inserisce una carta di credito...
 $c = new CreditCard(..);
 $user->insertCreditCard($c); -->
+
+<?php
+
+require_once __DIR__ . "/classes/User.php";
+
+
+try {
+
+    $newUser = new User("da", "montani", "premium");
+
+    echo $newUser->getName();
+} catch (Exception $error) {
+    echo $error->getMessage();
+}
